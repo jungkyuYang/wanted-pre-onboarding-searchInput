@@ -14,20 +14,18 @@ function MainPage() {
 	const [recommendWord, setRecommendWord] = useState<ISickJSON[]>([]);
 	const debouncedWord = useDebounce({ value: searchWord, delay: 500 });
 	const [currentHighlight, setCurrentHighlight] = useState(-1);
-	console.log(styles.highlight);
 
 	const onChangeSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
 		setSearchWord(e.target.value);
 		setCurrentHighlight(-1);
 	};
 
-	const handleKeyDown = (e: any) => {
-		if (e.keyCode === 40 && currentHighlight < recommendWord.length - 1) {
+	const handleKeyDown = (e: React.KeyboardEvent<HTMLElement>) => {
+		if (e.key === 'ArrowDown' && currentHighlight < recommendWord.length - 1) {
 			setCurrentHighlight(prevHighlight => prevHighlight + 1);
-		} else if (e.keyCode === 38 && currentHighlight > 0) {
+		} else if (e.key === 'ArrowUp' && currentHighlight > 0) {
 			setCurrentHighlight(prevHighlight => prevHighlight - 1);
-		} else if (e.keyCode === 13 && currentHighlight !== -1) {
-			console.log(recommendWord[currentHighlight].sickNm);
+		} else if (e.key === 'Enter' && currentHighlight !== -1) {
 			setSearchWord(recommendWord[currentHighlight].sickNm);
 		}
 	};
@@ -36,7 +34,6 @@ function MainPage() {
 		const axiosSick = async () => {
 			const data = await searchApi.getSearch(debouncedWord);
 			setRecommendWord(data);
-			console.info('calling api');
 		};
 		if (!debouncedWord) {
 			return setRecommendWord([]);

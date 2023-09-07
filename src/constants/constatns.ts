@@ -4,5 +4,5 @@ export const ROUTES = {
 };
 
 export const API_PATH = {
-	URL: 'http://localhost:4000/',
+	URL: 'http://localhost:4000',
 };
