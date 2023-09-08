@@ -17,4 +17,4 @@
 애플리케이션은 기본적으로 http://localhost:3000 에서 실행됩니다.
 
 ## ✨ 배포 사이트
-- http://preonboarding-frontend-12th-3.s3-website.ap-northeast-2.amazonaws.com
+- http://preonboarding-frontend-12th-3.s3-website.ap-northeast-2.amazonaws.com/
