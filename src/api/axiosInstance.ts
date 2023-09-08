@@ -11,20 +11,4 @@ axiosInstance.interceptors.request.use(
 	error => Promise.reject(error),
 );
 
-axiosInstance.interceptors.response.use(
-	response => {
-		if (response.status === 404) {
-			console.error('404 페이지');
-		}
-		return response;
-	},
-	async error => {
-		if (error.response?.status === 401) {
-			const response = await axios.request(error.config);
-			return response;
-		}
-		return Promise.reject(error);
-	},
-);
-
 export default axiosInstance;

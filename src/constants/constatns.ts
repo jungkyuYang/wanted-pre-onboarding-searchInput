@@ -4,5 +4,5 @@ export const ROUTES = {
 };
 
 export const API_PATH = {
-	URL: 'http://localhost:4000',
+	URL: 'http://ec2-13-209-228-20.ap-northeast-2.compute.amazonaws.com:4000/',
 };

@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import styles from './MainPage.module.scss';
 import searchApi from '../../api/searchApi';
 import useDebounce from '../../hooks/useDebounce';
+import { SearchForm } from '../../components/Main/SearchForm';
 
 interface ISickJSON {
 	sickCd: string;
@@ -10,7 +11,7 @@ interface ISickJSON {
 }
 
 function MainPage() {
-	const [searchWord, setSearchWord] = useState<any>('');
+	const [searchWord, setSearchWord] = useState<string>('');
 	const [recommendWord, setRecommendWord] = useState<ISickJSON[]>([]);
 	const debouncedWord = useDebounce({ value: searchWord, delay: 500 });
 	const [currentHighlight, setCurrentHighlight] = useState(-1);
@@ -44,15 +45,16 @@ function MainPage() {
 	return (
 		<>
 			<div>
-				<input
+				<SearchForm
 					required
 					type="text"
 					placeholder="질환명을 입력해 주세요"
 					onChange={onChangeSearch}
 					value={searchWord}
 					onKeyDown={handleKeyDown}
-				/>
-				<button type="submit">검색</button>
+					buttonType="submit"
+					buttonText="검색"
+				></SearchForm>
 				<div>추천검색어</div>
 				<ul>
 					{!recommendWord.length ? (

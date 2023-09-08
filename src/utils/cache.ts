@@ -8,6 +8,7 @@ export const getCacheByKey = async (key: string) => {
 		if (cachedData.expiry > new Date().getTime()) {
 			return cachedData.value;
 		}
+		cache.delete(key);
 	}
 	return null;
 };
